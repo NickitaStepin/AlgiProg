@@ -96,6 +96,23 @@ const Item = () => {
     newOptions[index] = e.target.value;
     setUserOptions(newOptions);
   };
+  const addNewQuestion = () => {
+    const newRiddle = {
+      id: riddles.length + 1,
+      description: userQuestion,
+      option1: userOptions[0],
+      option2: userOptions[1],
+      option3: userOptions[2],
+      option4: userOptions[3],
+      correct: 1,
+    };
+
+    const updatedRiddles = [...riddles, newRiddle];
+    setRiddles(updatedRiddles);
+
+    setUserQuestion("");
+    setUserOptions(["", "", "", ""]);
+  };
 
 
   return (
@@ -116,7 +133,16 @@ const Item = () => {
           </div>
         ))}
         </div>
-    </div>
+        <div>
+          <input type="text" value={userQuestion} onChange={handleUserQuestionChange} placeholder="Введите ваш вопрос" />
+        </div>
+        <div>
+          {userOptions.map((option, index) => (
+            <input key={index} type="text" value={option} onChange={(e) => handleUserOptionChange(index, e)} placeholder={`Вариант ответа ${index + 1}`} />
+          ))}
+        </div>
+        <button onClick={addNewQuestion}>Добавить вопрос</button>
+      </div>
     </div>
   );
 };
