@@ -133,6 +133,9 @@ const Item = () => {
           </div>
         ))}
         </div>
+        {showResult && <div className="result-message">{resultMessage}</div>}
+        <button onClick={checkAnswers}>Проверить ответы</button>
+        {reset && <button onClick={reloadPage}>Начать заново</button>}
         <div>
           <input type="text" value={userQuestion} onChange={handleUserQuestionChange} placeholder="Введите ваш вопрос" />
         </div>
